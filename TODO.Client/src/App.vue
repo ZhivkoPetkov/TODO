@@ -1,12 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div class="container">
+<div v-for="cat in categories" :key="cat.id">
+  {{ cat.name }}
+</div>
+</div>
+ 
+
 </template>
+
+<script>
+import {dataservice} from '../src/services/dataservice'
+
+export default {
+  created(){   
+   this.loadCategories();
+    console.log('created:' + this.categories);
+  },
+ data() {
+   return {
+     categories: []
+ }
+}, methods: {
+ async loadCategories(){
+    this.categories = await dataservice.getCategories();
+  }
+}
+}
+</script>
 
 <style>
 #app {
