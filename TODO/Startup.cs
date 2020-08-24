@@ -34,6 +34,7 @@ namespace TODO
             services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Startup));
 
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ITaskService, TaskService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

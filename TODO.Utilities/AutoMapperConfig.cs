@@ -14,6 +14,7 @@ namespace TODO.Utilities
         public AutoMapperConfig()
         {
             this.CreateMap<Category, CategoryDto>().ReverseMap();
+            this.CreateMap<Task, TaskDto>().ReverseMap();
         }
     }
 }
