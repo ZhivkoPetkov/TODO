@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using TODO.Domains.Data;
+using AutoMapper;
+using TODO.Utilities;
 
 namespace TODO
 {
@@ -28,8 +24,10 @@ namespace TODO
         {
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(opts =>
-         opts.UseInMemoryDatabase("todo-database"));
+                                 opts.UseInMemoryDatabase("todo-database"));
             services.AddScoped<ApplicationDbContext>();
+
+            services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

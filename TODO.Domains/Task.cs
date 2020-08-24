@@ -12,13 +12,21 @@ namespace TODO.Domains
             CreatedOn = DateTime.UtcNow;
             Items = new List<Item>();
         }
+
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Title { get; set; }
-        [Required]
 
+        [Required]
+        public int CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        [Required]
         public bool IsFinished { get; set; }
+
         public DateTime CreatedOn { get; set; }
         [Required]
 
