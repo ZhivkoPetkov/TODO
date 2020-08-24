@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODO", "TODO\TODO.csproj", "{0D97B087-7A1A-4AC8-AE69-168D449E8626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODO.Domains", "TODO.Domains\TODO.Domains.csproj", "{F147A741-2326-455C-A8B3-BBA8FB606201}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODO.Services", "TODO.Services\TODO.Services.csproj", "{8A798E35-EDF0-4835-87C4-2A83D40020A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D97B087-7A1A-4AC8-AE69-168D449E8626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D97B087-7A1A-4AC8-AE69-168D449E8626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D97B087-7A1A-4AC8-AE69-168D449E8626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D97B087-7A1A-4AC8-AE69-168D449E8626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F147A741-2326-455C-A8B3-BBA8FB606201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F147A741-2326-455C-A8B3-BBA8FB606201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F147A741-2326-455C-A8B3-BBA8FB606201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F147A741-2326-455C-A8B3-BBA8FB606201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A798E35-EDF0-4835-87C4-2A83D40020A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A798E35-EDF0-4835-87C4-2A83D40020A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A798E35-EDF0-4835-87C4-2A83D40020A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A798E35-EDF0-4835-87C4-2A83D40020A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A788763C-3AF3-40F9-A951-2E23CEACDC1C}
+	EndGlobalSection
+EndGlobal
