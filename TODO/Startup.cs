@@ -7,6 +7,10 @@ using Microsoft.Extensions.Hosting;
 using TODO.Domains.Data;
 using AutoMapper;
 using TODO.Utilities;
+using TODO.Services.Contracts;
+using TODO.Services;
+using System;
+using TODO.Domains;
 
 namespace TODO
 {
@@ -28,6 +32,8 @@ namespace TODO
             services.AddScoped<ApplicationDbContext>();
 
             services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Startup));
+
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,5 +55,6 @@ namespace TODO
                 endpoints.MapControllers();
             });
         }
+
     }
 }

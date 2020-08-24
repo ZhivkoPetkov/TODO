@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using System;
 
 namespace TODO.Domains.Data
 {
@@ -7,25 +9,34 @@ namespace TODO.Domains.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
            : base(options)
         {
-            this.Categories.Add(new Category
-            {
-                Id = 1,
-                Name = "Home"
-            });
+            CheckCreated();
+        }
 
-            this.Categories.Add(new Category
+        private void CheckCreated()
+        {
+            if (!Categories.Any())
             {
-                Id = 2,
-                Name = "Work"
-            });
 
-            this.Categories.Add(new Category
-            {
-                Id = 3,
-                Name = "Hobby"
-            });
+                Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "Home"
+                });
 
-            SaveChanges();
+                Categories.Add(new Category
+                {
+                    Id = 2,
+                    Name = "Work"
+                });
+
+                Categories.Add(new Category
+                {
+                    Id = 3,
+                    Name = "Hobby"
+                });
+
+                SaveChanges();
+            }
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -36,6 +47,7 @@ namespace TODO.Domains.Data
         {
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
+
         }
     }
 }
