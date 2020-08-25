@@ -1,31 +1,27 @@
 <template>
-<div class="container">
-<div v-for="cat in categories" :key="cat.id">
-  {{ cat.name }}
-</div>
-</div>
- 
-
+  <div class="container">
+    <div v-for="cat in categories" :key="cat.id">{{ cat.name }}</div>
+  </div>
 </template>
 
 <script>
-import {dataservice} from '../src/services/dataservice'
+import { dataservice } from "../src/services/dataservice";
+import { mapActions, mapState } from "vuex";
 
 export default {
-  created(){   
-   this.loadCategories();
-    console.log('created:' + this.categories);
+  async created() {
+    await this.loadCats();
   },
- data() {
-   return {
-     categories: []
- }
-}, methods: {
- async loadCategories(){
-    this.categories = await dataservice.getCategories();
-  }
-}
-}
+
+  methods: {
+    async loadCats() {
+      await this.$store.dispatch("getCategoriesAction");
+    },
+  },
+  computed: {
+    ...mapState(["categories"]),
+  },
+};
 </script>
 
 <style>
