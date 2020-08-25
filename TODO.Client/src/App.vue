@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
-    <div v-for="cat in categories" :key="cat.id">{{ cat.name }}</div>
-  </div>
+<NavBar />
 </template>
 
 <script>
 import { dataservice } from "../src/services/dataservice";
 import { mapActions, mapState } from "vuex";
+import NavBar from './components/NavBar.vue'
 
 export default {
+  components: {NavBar},
   async created() {
     await this.loadCats();
   },
