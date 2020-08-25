@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import '../node_modules/bulma/css/bulma.css'
+import '../node_modules/bulma-calendar/dist/css/bulma-calendar.min.css'
 
 Vue.config.productionTip = false
 

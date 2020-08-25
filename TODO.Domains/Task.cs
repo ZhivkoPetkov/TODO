@@ -30,7 +30,6 @@ namespace TODO.Domains
         [Required]
 
         public DateTime EndDate { get; set; }
-
        
     }
 }

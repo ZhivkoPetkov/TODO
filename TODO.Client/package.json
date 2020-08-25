@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "bulma-calendar": "^6.0.9",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuejs-datetimepicker": "^1.1.13",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^3.1.0"
   },
@@ -45,7 +47,9 @@
     },
     "rules": {
       "no-unused-vars": "off",
-      "no-unused-labels": "off"
+      "no-unused-labels": "off",
+      "no-undef": "off",
+      "no-unused-components" : "off"
     }
   },
   "browserslist": [

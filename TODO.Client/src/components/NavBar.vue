@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-top:25px">
+<button class="button is-success is-rounded" @click=showModalScreen>Add Task</button>
     <aside class="menu">
       <div class="is-divider"/>
       <ul class="menu-list">
@@ -17,18 +18,34 @@
         </li>
       </ul>
     </aside>
+     <AddTaskModal :isOpen="showModal" :categories="this.categories"
+     @cancel="hideModalScreen()" />
   </div>
 </template>
 
 <script>
 name: "NavBar";
+import AddTaskModal from '../components/AddTaskModal.vue'
 import dataservice from '../services/dataservice';
 import {MapState, mapState} from 'vuex';
 
 export default {
+    components: {AddTaskModal},
+    data() {
+        return {
+            showModal: false
+        }
+    },
     methods:{
        async loadCategories(){
            await this.$store.dispatch('getCategoriesAction');
+       },
+       showModalScreen(){
+           this.showModal = true;
+       },
+       hideModalScreen()
+       {
+        this.showModal = false;
        }
     },
    async created(){
@@ -38,10 +55,4 @@ export default {
         ...mapState(['categories'])
     }
 };
-
-
-
 </script>
-
-<style>
-</style>
