@@ -10,7 +10,6 @@ namespace TODO.Domains
         {
             IsFinished = false;
             CreatedOn = DateTime.UtcNow;
-            Items = new List<Item>();
         }
 
         [Key]
@@ -32,7 +31,6 @@ namespace TODO.Domains
 
         public DateTime EndDate { get; set; }
 
-        ICollection<Item> Items { get; set; }
        
     }
 }

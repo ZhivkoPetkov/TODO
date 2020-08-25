@@ -21,6 +21,5 @@ namespace TODO.Utilities.DTOs
 
         public DateTime EndDate { get; set; }
 
-        ICollection<Item> Items { get; set; }
     }
 }

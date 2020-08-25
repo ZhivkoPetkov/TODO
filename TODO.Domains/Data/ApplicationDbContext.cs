@@ -40,7 +40,6 @@ namespace TODO.Domains.Data
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Item> Items { get; set; }
         public DbSet<Task> Tasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
