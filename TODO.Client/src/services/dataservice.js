@@ -33,6 +33,7 @@ const addTask = async function (task) {
             
         }).then(function (response) {
             console.log(response);
+            return response;
           })
           .catch(function (error) {
             console.log(error.message);

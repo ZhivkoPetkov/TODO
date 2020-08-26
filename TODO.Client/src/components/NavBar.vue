@@ -6,7 +6,7 @@ Add Task</button>
       <div class="is-divider"/>
       <ul class="menu-list">
         <li>
-          <a>Today</a>
+          <a >Today</a>
         </li>
         <li>
           <a>Important</a>
@@ -19,7 +19,7 @@ Add Task</button>
         </li>
       </ul>
     </aside>
-     <AddTaskModal :isOpen="showModal" :categories="this.categories"
+     <AddTaskModal v-if="showModal" :isOpen="showModal" :categories="this.categories"
      @cancel="hideModalScreen()" />
   </div>
 </template>

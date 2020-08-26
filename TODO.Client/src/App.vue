@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <NavBar />
-   <font-awesome-icon icon="user-secret" />
-    <h1>Taks</h1>
-    <div v-for="task in tasks" :key="task.id">
-      {{ task.title }}
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <NavBar />
+      </div>
+
+      <div class="column">
+        <Tasks/>
+      </div>
     </div>
   </div>
 </template>
@@ -13,9 +16,9 @@
 import { dataservice } from "../src/services/dataservice";
 import { mapActions, mapState } from "vuex";
 import NavBar from "./components/NavBar.vue";
-
+import Tasks from "./views/Tasks.vue";
 export default {
-  components: { NavBar },
+  components: { NavBar, Tasks },
   async created() {
     await this.loadCats();
     await this.loadTasks();
@@ -25,9 +28,9 @@ export default {
     async loadCats() {
       await this.$store.dispatch("getCategoriesAction");
     },
-    async loadTasks(){
+    async loadTasks() {
       await this.$store.dispatch("getTasksAction");
-    }
+    },
   },
   computed: {
     ...mapState(["categories", "tasks"]),
@@ -56,5 +59,4 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
 </style>

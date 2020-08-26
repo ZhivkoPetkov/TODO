@@ -103,9 +103,7 @@ export default {
       if (
         this.task.title &&
         this.task.category &&
-        this.task.enddate &&
-        this.task.isimportant
-      ) {
+        this.task.enddate     ) {
         return true;
       }
       this.errors = [];
@@ -117,9 +115,6 @@ export default {
       }
       if (!this.task.enddate) {
         this.errors.push("- End date required!");
-      }
-      if (!this.task.isimportant) {
-        this.errors.push("- Is important check required!");
       }
     },
   },
