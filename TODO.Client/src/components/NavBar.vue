@@ -1,6 +1,7 @@
 <template>
   <div class="container" style="margin-top:25px">
-<button class="button is-success is-rounded" @click=showModalScreen>Add Task</button>
+<button class="button is-success is-rounded" @click=showModalScreen>
+Add Task</button>
     <aside class="menu">
       <div class="is-divider"/>
       <ul class="menu-list">
@@ -54,5 +55,5 @@ export default {
     computed:{
         ...mapState(['categories'])
     }
-};
+}
 </script>

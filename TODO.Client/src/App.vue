@@ -1,6 +1,11 @@
 <template>
   <div>
     <NavBar />
+   <font-awesome-icon icon="user-secret" />
+    <h1>Taks</h1>
+    <div v-for="task in tasks" :key="task.id">
+      {{ task.title }}
+    </div>
   </div>
 </template>
 
@@ -13,15 +18,19 @@ export default {
   components: { NavBar },
   async created() {
     await this.loadCats();
+    await this.loadTasks();
   },
 
   methods: {
     async loadCats() {
       await this.$store.dispatch("getCategoriesAction");
     },
+    async loadTasks(){
+      await this.$store.dispatch("getTasksAction");
+    }
   },
   computed: {
-    ...mapState(["categories"]),
+    ...mapState(["categories", "tasks"]),
   },
 };
 </script>
@@ -47,4 +56,5 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

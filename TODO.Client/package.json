@@ -11,6 +11,9 @@
     "start": "npm run css-watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "axios": "^0.20.0",
     "bulma-calendar": "^6.0.9",
     "core-js": "^3.6.5",
@@ -49,7 +52,8 @@
       "no-unused-vars": "off",
       "no-unused-labels": "off",
       "no-undef": "off",
-      "no-unused-components" : "off"
+      "vue/no-unused-components": "off",
+      "no-unused-components": "off"
     }
   },
   "browserslist": [

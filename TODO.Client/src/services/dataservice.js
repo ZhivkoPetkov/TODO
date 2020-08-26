@@ -12,6 +12,33 @@ const getCategories = async function () {
     }
 };
 
+const getTasks = async function () {
+    try {
+        const response = await axios.get(`${API}/tasks`)
+        const data = parseList(response);
+        return data;
+    } catch (error) {
+        console.log(error.message);
+        return [];
+    }
+};
+
+const addTask = async function (task) {
+        console.log(task.title);
+        const response = await axios.post(`${API}/tasks`, {
+            title: task.title,
+            categoryid: task.category,
+            enddate: task.enddate,
+            isimportant: task.isimportant
+            
+        }).then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error.message);
+          })
+}
+
 export const parseItem = (response, code) => {
     if (response.status !== code) throw Error(response.message);
     let item = response.data;
@@ -32,5 +59,7 @@ const parseList = response => {
 };
 
 export const dataservice = {
-    getCategories
+    getCategories,
+    getTasks,
+    addTask
 };
