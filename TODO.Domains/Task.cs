@@ -26,6 +26,9 @@ namespace TODO.Domains
         [Required]
         public bool IsFinished { get; set; }
 
+        [Required]
+        public bool IsImportant { get; set; }
+
         public DateTime CreatedOn { get; set; }
         [Required]
 
