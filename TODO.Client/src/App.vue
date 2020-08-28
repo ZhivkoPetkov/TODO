@@ -4,9 +4,10 @@
       <div class="column is-one-quarter">
         <NavBar />
       </div>
-
+      
       <div class="column">
-        <Tasks/>
+        <h1>Task State: {{this.taskFilter}}</h1>
+        <Tasks />
       </div>
     </div>
   </div>
@@ -33,7 +34,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["categories", "tasks"]),
+    ...mapState(["categories", "tasks", 'taskFilter']),
   },
 };
 </script>

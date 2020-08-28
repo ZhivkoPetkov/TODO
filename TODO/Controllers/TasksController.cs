@@ -14,11 +14,13 @@ namespace TODO.Controllers
     {
         private readonly ITaskService taskService;
         private readonly IMapper mapper;
+        private readonly ICategoryService categoryService;
 
-        public TasksController(ITaskService taskService, IMapper mapper)
+        public TasksController(ITaskService taskService, IMapper mapper, ICategoryService categoryService)
         {
             this.taskService = taskService;
             this.mapper = mapper;
+            this.categoryService = categoryService;
         }
 
         // GET: api/Tasks
@@ -54,8 +56,9 @@ namespace TODO.Controllers
                 return BadRequest();
             }
             await this.taskService.AddTask(task);
-
-            return this.mapper.Map<TaskDto>(task);
+            var model = await this.taskService.GetTaskById(task.Id);
+            model.Category = await this.categoryService.GetCategoryById(task.Id);
+            return this.mapper.Map<TaskDto>(model);
         }
 
         // DELETE: api/Tasks/5

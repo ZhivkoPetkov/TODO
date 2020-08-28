@@ -9,7 +9,7 @@ namespace TODO.Domains
         public Task()
         {
             IsFinished = false;
-            CreatedOn = DateTime.UtcNow;
+            CreatedOn = DateTime.Now;
         }
 
         [Key]

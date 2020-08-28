@@ -11,6 +11,8 @@ namespace TODO.Domains.Data
         {
         }
 
+      
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Task> Tasks { get; set; }
 
@@ -19,6 +21,10 @@ namespace TODO.Domains.Data
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 }

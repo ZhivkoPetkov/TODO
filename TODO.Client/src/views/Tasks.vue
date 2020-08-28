@@ -23,7 +23,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["tasks"]),
+    ...mapState(["tasks", "taskFilter"]),
   },
 };
 </script>

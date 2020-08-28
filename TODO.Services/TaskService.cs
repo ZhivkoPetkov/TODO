@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TODO.Domains;
 using TODO.Domains.Data;
 using TODO.Services.Contracts;
 using TODO.Utilities.DTOs;
@@ -12,19 +13,21 @@ namespace TODO.Services
     {
         private readonly IMapper mapper;
         private readonly ApplicationDbContext dbContext;
+        private readonly ICategoryService categoryService;
 
-        public TaskService(IMapper mapper, ApplicationDbContext dbContext)
+        public TaskService(IMapper mapper, ApplicationDbContext dbContext, ICategoryService categoryService)
         {
             this.mapper = mapper;
             this.dbContext = dbContext;
+            this.categoryService = categoryService;
         }
 
-        public async Task<int> AddTask(Domains.Task task)
+        public async Task<int> AddTask(Domains.Task newTask)
         {
-            this.dbContext.Tasks.Add(task);
+            this.dbContext.Tasks.Add(newTask);
             this.dbContext.SaveChanges();
 
-            return task.Id;
+            return newTask.Id;
         }
 
         public async Task<bool> ChangeStatus(int id, bool status)

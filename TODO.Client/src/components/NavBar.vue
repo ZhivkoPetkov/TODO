@@ -6,16 +6,16 @@ Add Task</button>
       <div class="is-divider"/>
       <ul class="menu-list">
         <li>
-          <a >Today</a>
+          <a @click="updateFilter('today')">Today</a>
         </li>
         <li>
-          <a>Important</a>
+          <a @click="updateFilter('important')">Important </a>
         </li>
       </ul>
     <div class="divider is-danger">----------------</div>
    <ul class="menu-list">
         <li v-for="cat in categories" :key="cat.id">
-           <a> {{ cat.name }}</a>
+           <a a @click="updateFilter(cat.name)"> {{ cat.name }}</a>
         </li>
       </ul>
     </aside>
@@ -47,6 +47,11 @@ export default {
        hideModalScreen()
        {
         this.showModal = false;
+       },
+       updateFilter(filter)
+       {
+         console.log(filter);
+         this.$store.dispatch("updateTaskFilterAction", filter)
        }
     },
    async created(){
