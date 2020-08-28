@@ -30,7 +30,7 @@ namespace TODO
            
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(opts =>
-                                 opts.UseInMemoryDatabase("todo-database"));
+                                 opts.UseInMemoryDatabase(Constants.databaseName));
             services.AddScoped<ApplicationDbContext>();
 
             services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Startup));
@@ -40,12 +40,14 @@ namespace TODO
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            Seeder.SeedCategories(dbContext);
 
             app.UseHttpsRedirection();
 
@@ -55,6 +57,7 @@ namespace TODO
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

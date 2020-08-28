@@ -45,7 +45,7 @@ const mutations = {
 const getters = {
   getCategories(){
     return this.$store.state.categories;
-  }
+  },
 }
 
 export default new Vuex.Store({

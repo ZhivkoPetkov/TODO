@@ -9,34 +9,6 @@ namespace TODO.Domains.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
            : base(options)
         {
-            CheckCreated();
-        }
-
-        private void CheckCreated()
-        {
-            if (!Categories.Any())
-            {
-
-                Categories.Add(new Category
-                {
-                    Id = 1,
-                    Name = "Home"
-                });
-
-                Categories.Add(new Category
-                {
-                    Id = 2,
-                    Name = "Work"
-                });
-
-                Categories.Add(new Category
-                {
-                    Id = 3,
-                    Name = "Hobby"
-                });
-
-                SaveChanges();
-            }
         }
 
         public DbSet<Category> Categories { get; set; }
