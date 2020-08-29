@@ -34,7 +34,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["categories", "tasks", 'taskFilter']),
+    ...mapState(["categories", "tasks", 'taskFilter', 'showFinished']),
   },
 };
 </script>
@@ -48,6 +48,13 @@ export default {
   color: #2c3e50;
 }
 
+body, html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: EBECF0;
+}
 #nav {
   padding: 30px;
 }

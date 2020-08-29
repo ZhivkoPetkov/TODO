@@ -17,10 +17,10 @@ const getTasks = async function (filter) {
         const response = await axios.get(`${API}/tasks`)
         const data = parseList(response);
         if (filter) {
-            if (filter === 'today') {
+            if (filter === 'Today') {
                 let current_datetime = new Date().toLocaleDateString("en-US");
                 return data.filter(p => new Date(p.endDate).toLocaleDateString("en-US") === current_datetime)
-            } else if (filter === 'important') {
+            } else if (filter === 'Important') {
                 return data.filter(p => p.isImportant);
             }
             else {

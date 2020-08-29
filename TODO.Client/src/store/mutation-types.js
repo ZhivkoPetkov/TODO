@@ -5,3 +5,4 @@ export const DELETE_TASK = "deleteTask";
 export const UPDATE_TASK = "updateTask";
 export const FINISH_TASK = "finishTask";
 export const UPDATE_TASK_FILTER = "updateTaskFilter";
+export const SHOW_FINISHED = "showFinished";

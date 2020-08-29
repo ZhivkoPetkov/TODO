@@ -2,13 +2,12 @@
   <div>
     <div class="card" v-for="task in tasks" :key="task.id">
       <header class="card-header">
-        <p class="card-header-title">{{task.title}}, id: {{task.id}}</p>
-        <p class="card-header-title" style="color:red" v-if="task.isImportant">! IMPORTANT</p>
-        <a href="#" class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </a>
+        <p class="card-header-title">{{task.title}}</p>
+        <p class="card-header-title">
+          <span class="tag is-danger" style="margin-right: 4px" v-if="task.isImportant">Important</span>
+          <br>
+        <span v-if="isLateTask(task) && !task.isFinished" class="tag is-warning">Late</span>
+        <span v-if="task.isFinished" class="tag is-success">FINISHED</span></p>
       </header>
       <div class="card-content">
         <div class="content">
@@ -16,9 +15,7 @@
           <br />
           <time
             datetime="2016-1-1"
-          >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>
-          <h2>Finished: {{task.isFinished}}</h2>
-        </div>
+          >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>        </div>
       </div>
       <footer class="card-footer" style="margin-bottom:10px">
         <a @click="finishTask(task.id)" class="card-footer-item">Finish</a>
@@ -51,6 +48,9 @@ export default {
     },
     async finishTask(id){
       await this.$store.dispatch("finishTaskAction", id);
+    },
+    isLateTask(task){
+      return new Date(task.endDate).toLocaleDateString("en-US") < new Date().toLocaleDateString("en-US")
     }
   },
   computed: {
