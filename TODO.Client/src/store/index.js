@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { dataservice } from '../services/dataservice'
-import { GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER } from '../store/mutation-types';
+import { GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK } from '../store/mutation-types';
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
@@ -30,6 +30,12 @@ const actions = {
     commit(UPDATE_TASK_FILTER, filter)
     const tasks = await dataservice.getTasks(this.state.taskFilter);
     commit(GET_TASKS, tasks);
+  },
+  async deleteTaskAction({commit}, id){
+    const response = await dataservice.deleteTask(id);
+    if(response === true){
+      commit(DELETE_TASK, id)
+    }
   }
 };
 
@@ -52,6 +58,13 @@ const mutations = {
     state.taskFilter = filter;
     state.tasks = state.tasks.filter(p=>p.category.name===filter);
     var result = state.tasks;
+  },
+  [DELETE_TASK](state, id)
+  {
+    const index = state.tasks.findIndex(p => p.id == id);
+    console.log('index: '+index);
+    state.tasks = [...state.tasks.filter(t => t.id != id)];
+    console.log('count:'+ state.tasks.length);
   }
 };
 

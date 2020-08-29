@@ -42,7 +42,7 @@ namespace TODO.Controllers
         [HttpPost("{id}/{status}")]
         public async Task<ActionResult<bool>> ChangeStatus(int id, bool status)
         {
-            return await this.taskService.ChangeStatus(id,status);
+            return await this.taskService.ChangeStatus(id, status);
         }
 
         // POST: api/Tasks
@@ -57,7 +57,7 @@ namespace TODO.Controllers
             }
             var response = await this.taskService.AddTask(task);
             var model = await this.taskService.GetTaskById(response);
-       //     model.Category = await this.categoryService.GetCategoryById(task.Id);
+            //     model.Category = await this.categoryService.GetCategoryById(task.Id);
             return this.mapper.Map<TaskDto>(model);
         }
 

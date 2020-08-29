@@ -35,15 +35,22 @@ const getTasks = async function (filter) {
 };
 
 const addTask = async function (task) {
-    
-        const response = await axios.post(`${API}/tasks`, {
-            title: task.title,
-            categoryid: task.category,
-            enddate: task.enddate,
-            isimportant: task.isimportant,
-        });
-        return response.data;
-    };
+
+    const response = await axios.post(`${API}/tasks`, {
+        title: task.title,
+        categoryid: task.category,
+        enddate: task.enddate,
+        isimportant: task.isimportant,
+    });
+    return response.data;
+};
+
+
+const deleteTask = async function (id) {
+    const response = await axios.delete(`${API}/tasks/`+id);
+    console.log(response.data);
+    return response.data;
+};
 
 export const parseItem = (response, code) => {
     if (response.status !== code) throw Error(response.message);
@@ -67,5 +74,6 @@ const parseList = response => {
 export const dataservice = {
     getCategories,
     getTasks,
-    addTask
+    addTask,
+    deleteTask
 };

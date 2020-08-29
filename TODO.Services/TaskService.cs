@@ -55,6 +55,9 @@ namespace TODO.Services
                 return false;
             }
 
+            this.dbContext.Tasks.Remove(task);
+            this.dbContext.SaveChanges();
+
             return true;
         }
 
