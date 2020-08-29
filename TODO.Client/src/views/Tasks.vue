@@ -2,12 +2,15 @@
   <div>
     <div class="card" v-for="task in tasks" :key="task.id">
       <header class="card-header">
-        <p class="card-header-title">{{task.title}}</p>
-        <p class="card-header-title">
-          <span class="tag is-danger" style="margin-right: 4px" v-if="task.isImportant">Important</span>
-          <br>
-        <span v-if="isLateTask(task) && !task.isFinished" class="tag is-warning">Late</span>
-        <span v-if="task.isFinished" class="tag is-success">FINISHED</span></p>
+        <div class="row justify-content-center card-header-title">
+          <p>{{task.title}}</p>
+
+          <div style="margin-left:auto; margin-right:0;">
+            <span class="tag is-danger" style="margin-right: 4px" v-if="task.isImportant">Important</span>
+            <span v-if="isLateTask(task) && !task.isFinished" class="tag is-warning">Late</span>
+            <span v-if="task.isFinished" class="tag is-success">FINISHED</span>
+          </div>
+        </div>
       </header>
       <div class="card-content">
         <div class="content">
@@ -15,7 +18,8 @@
           <br />
           <time
             datetime="2016-1-1"
-          >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>        </div>
+          >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>
+        </div>
       </div>
       <footer class="card-footer" style="margin-bottom:10px">
         <a @click="finishTask(task.id)" class="card-footer-item">Finish</a>
@@ -46,12 +50,15 @@ export default {
     async deleteTask(id) {
       await this.$store.dispatch("deleteTaskAction", id);
     },
-    async finishTask(id){
+    async finishTask(id) {
       await this.$store.dispatch("finishTaskAction", id);
     },
-    isLateTask(task){
-      return new Date(task.endDate).toLocaleDateString("en-US") < new Date().toLocaleDateString("en-US")
-    }
+    isLateTask(task) {
+      return (
+        new Date(task.endDate).toLocaleDateString("en-US") <
+        new Date().toLocaleDateString("en-US")
+      );
+    },
   },
   computed: {
     ...mapState(["tasks", "taskFilter"]),

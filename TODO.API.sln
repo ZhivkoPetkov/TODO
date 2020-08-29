@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TODO.Domains", "TODO.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TODO.Services", "TODO.Services\TODO.Services.csproj", "{8A798E35-EDF0-4835-87C4-2A83D40020A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODO.Utilities", "TODO.Utilities\TODO.Utilities.csproj", "{FE9955BB-321B-40ED-83B9-31D2DEE9F4ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TODO.Utilities", "TODO.Utilities\TODO.Utilities.csproj", "{FE9955BB-321B-40ED-83B9-31D2DEE9F4ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7EC173DF-457C-45DD-B6F6-BF52E30D785A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
