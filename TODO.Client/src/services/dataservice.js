@@ -45,9 +45,14 @@ const addTask = async function (task) {
     return response.data;
 };
 
-
 const deleteTask = async function (id) {
-    const response = await axios.delete(`${API}/tasks/`+id);
+    const response = await axios.delete(`${API}/tasks/` + id);
+    console.log(response.data);
+    return response.data;
+};
+
+const finishTask = async function (id) {
+    const response = await axios.post(`${API}/tasks/finish/` + id);
     console.log(response.data);
     return response.data;
 };
@@ -75,5 +80,6 @@ export const dataservice = {
     getCategories,
     getTasks,
     addTask,
-    deleteTask
+    deleteTask,
+    finishTask
 };

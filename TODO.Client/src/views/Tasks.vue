@@ -17,10 +17,11 @@
           <time
             datetime="2016-1-1"
           >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>
+          <h2>Finished: {{task.isFinished}}</h2>
         </div>
       </div>
       <footer class="card-footer" style="margin-bottom:10px">
-        <a @click="deleteTask(task.id)" class="card-footer-item">Save</a>
+        <a @click="finishTask(task.id)" class="card-footer-item">Finish</a>
         <a href="#" class="card-footer-item">Edit</a>
         <a @click="deleteTask(task.id)" class="card-footer-item">Delete</a>
       </footer>
@@ -46,9 +47,11 @@ export default {
       await this.$store.dispatch("getTasksAction");
     },
     async deleteTask(id) {
-      console.log(id);
       await this.$store.dispatch("deleteTaskAction", id);
     },
+    async finishTask(id){
+      await this.$store.dispatch("finishTaskAction", id);
+    }
   },
   computed: {
     ...mapState(["tasks", "taskFilter"]),

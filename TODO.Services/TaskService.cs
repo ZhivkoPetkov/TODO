@@ -31,19 +31,19 @@ namespace TODO.Services
             return newTask.Id;
         }
 
-        public async Task<bool> ChangeStatus(int id, bool status)
+        public async Task<TaskDto> ChangeStatus(int id, bool status)
         {
             var task = this.dbContext.Tasks.Find(id);
 
             if (task is null)
             {
-                return false;
+                return null;
             }
 
             task.IsFinished = status;
             this.dbContext.SaveChanges();
 
-            return true;
+            return this.mapper.Map<TaskDto>(task);
         }
 
         public async Task<bool> DeleteTask(int id)

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { dataservice } from '../services/dataservice'
-import { GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK } from '../store/mutation-types';
+import { GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK } from '../store/mutation-types';
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
@@ -26,16 +26,20 @@ const actions = {
     const response = await dataservice.addTask(task);
     commit(ADD_TASK, response);
   },
- async updateTaskFilterAction({ commit }, filter) {
+  async updateTaskFilterAction({ commit }, filter) {
     commit(UPDATE_TASK_FILTER, filter)
     const tasks = await dataservice.getTasks(this.state.taskFilter);
     commit(GET_TASKS, tasks);
   },
-  async deleteTaskAction({commit}, id){
+  async deleteTaskAction({ commit }, id) {
     const response = await dataservice.deleteTask(id);
-    if(response === true){
+    if (response === true) {
       commit(DELETE_TASK, id)
     }
+  },
+  async finishTaskAction({ commit }, id) {
+    const response = await dataservice.finishTask(id);
+    commit(FINISH_TASK, response)
   }
 };
 
@@ -53,18 +57,21 @@ const mutations = {
     }
     state.tasks.push(task);
   },
-  [UPDATE_TASK_FILTER](state, filter)
-  {
+  [UPDATE_TASK_FILTER](state, filter) {
     state.taskFilter = filter;
-    state.tasks = state.tasks.filter(p=>p.category.name===filter);
+    state.tasks = state.tasks.filter(p => p.category.name === filter);
     var result = state.tasks;
   },
-  [DELETE_TASK](state, id)
-  {
+  [DELETE_TASK](state, id) {
     const index = state.tasks.findIndex(p => p.id == id);
-    console.log('index: '+index);
+    console.log('index: ' + index);
     state.tasks = [...state.tasks.filter(t => t.id != id)];
-    console.log('count:'+ state.tasks.length);
+    console.log('count:' + state.tasks.length);
+  },
+  [FINISH_TASK](state, task) {
+    const index = state.tasks.findIndex(p => p.id == task.id);
+    state.tasks.splice(index,1,task);
+    state.tasks = [...state.tasks];
   }
 };
 

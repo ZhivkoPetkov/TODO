@@ -11,6 +11,6 @@ namespace TODO.Services.Contracts
         Task<int> AddTask(Domains.Task task);
         Task<TaskDto> UpdateTask(Domains.Task task);
         Task<bool> DeleteTask(int id);
-        Task<bool> ChangeStatus(int id, bool status);
+        Task<TaskDto> ChangeStatus(int id, bool status);
     }
 }
