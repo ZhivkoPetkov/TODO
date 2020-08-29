@@ -55,9 +55,9 @@ namespace TODO.Controllers
             {
                 return BadRequest();
             }
-            await this.taskService.AddTask(task);
-            var model = await this.taskService.GetTaskById(task.Id);
-            model.Category = await this.categoryService.GetCategoryById(task.Id);
+            var response = await this.taskService.AddTask(task);
+            var model = await this.taskService.GetTaskById(response);
+       //     model.Category = await this.categoryService.GetCategoryById(task.Id);
             return this.mapper.Map<TaskDto>(model);
         }
 

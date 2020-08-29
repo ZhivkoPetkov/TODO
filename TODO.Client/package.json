@@ -11,6 +11,7 @@
     "start": "npm run css-watch"
   },
   "dependencies": {
+    "@creativebulma/bulma-divider": "^1.1.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/vue-fontawesome": "^0.1.10",

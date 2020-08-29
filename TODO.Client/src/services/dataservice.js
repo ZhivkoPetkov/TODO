@@ -20,8 +20,7 @@ const getTasks = async function (filter) {
             if (filter === 'today') {
                 let current_datetime = new Date().toLocaleDateString("en-US");
                 return data.filter(p => new Date(p.endDate).toLocaleDateString("en-US") === current_datetime)
-            } else if(filter === 'important'){
-                console.log(data);
+            } else if (filter === 'important') {
                 return data.filter(p => p.isImportant);
             }
             else {
@@ -36,21 +35,15 @@ const getTasks = async function (filter) {
 };
 
 const addTask = async function (task) {
-    console.log(task.title);
-    const response = await axios.post(`${API}/tasks`, {
-        title: task.title,
-        categoryid: task.category,
-        enddate: task.enddate,
-        isimportant: task.isimportant
-
-    }).then(function (response) {
-        console.log(response);
-        return response;
-    })
-        .catch(function (error) {
-            console.log(error.message);
-        })
-}
+    
+        const response = await axios.post(`${API}/tasks`, {
+            title: task.title,
+            categoryid: task.category,
+            enddate: task.enddate,
+            isimportant: task.isimportant,
+        });
+        return response.data;
+    };
 
 export const parseItem = (response, code) => {
     if (response.status !== code) throw Error(response.message);

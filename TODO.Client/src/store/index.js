@@ -23,9 +23,8 @@ const actions = {
     commit(GET_TASKS, tasks);
   },
   async addTaskAction({ commit }, task) {
-    console.log(task);
-    var result = await dataservice.addTask(task);
-    commit(ADD_TASK, task);
+    const response = await dataservice.addTask(task);
+    commit(ADD_TASK, response);
   },
  async updateTaskFilterAction({ commit }, filter) {
     commit(UPDATE_TASK_FILTER, filter)
@@ -42,6 +41,7 @@ const mutations = {
     state.tasks = tasks;
   },
   [ADD_TASK](state, task) {
+    console.log(task.category.name);
     if (state.tasks == undefined) {
       state.tasks = []
     }

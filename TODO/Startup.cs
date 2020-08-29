@@ -30,7 +30,7 @@ namespace TODO
            
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(opts =>
-                                 opts.UseInMemoryDatabase(Constants.databaseName));
+                                 opts.UseInMemoryDatabase(Constants.databaseName).UseLazyLoadingProxies());
             services.AddScoped<ApplicationDbContext>();
 
             services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Startup));

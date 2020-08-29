@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +60,8 @@ namespace TODO.Services
 
         public async Task<TaskDto> GetTaskById(int id)
         {
-            return this.mapper.Map<TaskDto>(this.dbContext.Tasks.Find(id));
+            var task = await this.dbContext.Tasks.Include(p => p.Category).FirstOrDefaultAsync(x => x.Id == id);
+            return this.mapper.Map<TaskDto>(task);
         }
 
         public async Task<ICollection<TaskDto>> GetTasks()

@@ -4,9 +4,9 @@
       <div class="column is-one-quarter">
         <NavBar />
       </div>
-      
       <div class="column">
-        <h1>Task State: {{this.taskFilter}}</h1>
+       <center style="margin-top:5px"> <h1><b>Task with category: {{this.taskFilter}}</b></h1></center>
+       <hr class="danger">
         <Tasks />
       </div>
     </div>
