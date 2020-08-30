@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { dataservice } from '../services/dataservice'
 import {
-  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED } from '../store/mutation-types';
+  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED
+} from '../store/mutation-types';
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
@@ -22,9 +23,11 @@ const actions = {
   async getTasksAction({ commit }) {
     let tasks = await dataservice.getTasks(this.state.taskFilter);
 
-    if (!this.state.showFinished) {
-      tasks = tasks.filter(p => p.isFinished == false)
+    if (this.state.showFinished === false) {
+      tasks = tasks.filter(p => p.isFinished !== true)
     }
+
+    console.log('finished:' + this.state.showFinished)
 
     commit(GET_TASKS, tasks);
   },
@@ -34,7 +37,10 @@ const actions = {
   },
   async updateTaskFilterAction({ commit }, filter) {
     commit(UPDATE_TASK_FILTER, filter)
-    const tasks = await dataservice.getTasks(this.state.taskFilter);
+    let tasks = await dataservice.getTasks(this.state.taskFilter);
+    if (this.state.showFinished === false) {
+      tasks = tasks.filter(p => p.isFinished !== true)
+    }
     commit(GET_TASKS, tasks);
   },
   async deleteTaskAction({ commit }, id) {
@@ -50,7 +56,7 @@ const actions = {
   async updateShowFinishedAction({ commit }) {
     if (!this.state.showFinished) {
       commit(SHOW_FINISHED, true)
-    } else(
+    } else (
       commit(SHOW_FINISHED, false)
     )
   }
@@ -84,12 +90,12 @@ const mutations = {
     state.tasks = [...state.tasks];
   },
   [SHOW_FINISHED](state, status) {
-    console.log(this.state.showFinished);
     state.showFinished = status
   }
 };
 
 const getters = {
+  getTaskById(id) { this.state.tasks.find(p => p.Id = id) }
 }
 
 export default new Vuex.Store({

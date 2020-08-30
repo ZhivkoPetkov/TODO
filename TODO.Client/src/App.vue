@@ -53,7 +53,7 @@ body, html {
   margin: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: EBECF0;
+  background-color: #EBECF0;
 }
 #nav {
   padding: 30px;
