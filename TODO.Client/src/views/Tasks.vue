@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  stlye="margin-top:40px">
     <h1 v-if="tasks.length === 0">You dont have any tasks now. Enjoy your beer :-) </h1>
     <div class="card" v-for="task in tasks" :key="task.id">
       <header class="card-header">

@@ -1,6 +1,8 @@
 <template>
   <div class="container" style="margin-top:25px">
-    <button class="button is-success is-rounded" @click="showModalScreen">Add Task</button>
+    <router-link tag="button"
+            class="button add-button is-success" :to="{ name: 'addTaskModal' }">Add Task</router-link>
+
     <aside class="menu">
       <div class="is-divider" />
       <ul class="menu-list">
@@ -18,15 +20,9 @@
         </li>
       </ul>
     </aside>
-    <AddTaskModal
-      v-if="showModal"
-      :isOpen="showModal"
-      :categories="this.categories"
-      @cancel="hideModalScreen()"
-    />
     <div class="divider is-danger">----------------</div>
     <label class="checkbox">
-      <input type="checkbox" :checked=showFinished  @change="updateFinishedFilter()" />
+      <input type="checkbox" :checked="showFinished" @change="updateFinishedFilter()" />
       Show finished?
     </label>
   </div>
@@ -49,19 +45,12 @@ export default {
     async loadCategories() {
       await this.$store.dispatch("getCategoriesAction");
     },
-    showModalScreen() {
-      this.showModal = true;
-    },
-    hideModalScreen() {
-      this.showModal = false;
-    },
     async updateFilter(filter) {
       await this.$store.dispatch("updateTaskFilterAction", filter);
     },
     async updateFinishedFilter() {
-       this.$store.dispatch("updateShowFinishedAction");
-        this.$store.dispatch("getTasksAction");
-
+      this.$store.dispatch("updateShowFinishedAction");
+      this.$store.dispatch("getTasksAction");
     },
   },
   async created() {

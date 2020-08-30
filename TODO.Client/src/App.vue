@@ -4,10 +4,8 @@
       <div class="column is-one-quarter">
         <NavBar />
       </div>
-      <div class="column">
-       <center style="margin-top:5px"> <h1><b>Task with category: {{this.taskFilter}}</b></h1></center>
-       <hr class="danger">
-        <Tasks />
+      <div class="column"  style="margin-top:20px">
+        <router-view />
       </div>
     </div>
   </div>
@@ -34,7 +32,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["categories", "tasks", 'taskFilter', 'showFinished']),
+    ...mapState(["categories", "tasks", "taskFilter", "showFinished"]),
   },
 };
 </script>
@@ -48,12 +46,13 @@ export default {
   color: #2c3e50;
 }
 
-body, html {
+body,
+html {
   padding: 0;
   margin: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #EBECF0;
+  background-color: #ebecf0;
 }
 #nav {
   padding: 30px;
