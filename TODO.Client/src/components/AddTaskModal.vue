@@ -32,7 +32,6 @@
           <input type="radio" name="category" :value="cat.id" v-model="task.category" />
           {{cat.name}}
         </label>
-
       </div>
     </div>
 
@@ -44,7 +43,7 @@
         <div class="field">
           <div class="control">
             <label class="checkbox">
-              <input type="checkbox" v-model="task.isimportant" />
+              <input type="checkbox" :checked="task.isImportant" v-model="task.isImportant" />
             </label>
           </div>
         </div>
@@ -67,8 +66,7 @@
     </div>
 
     <div class="field is-horizontal">
-      <div class="field-label">
-      </div>
+      <div class="field-label"></div>
       <div class="field-body">
         <div class="field">
           <div class="control">
@@ -88,31 +86,39 @@ category: "";
 export default {
   data() {
     return {
-      task: {
-        title: null,
-        isimportant: false,
-        enddate: null,
-        category: null,
-      },
+      task: {},
       errors: [],
     };
   },
-
-  async created(){
-    await this.$store.dispatch("getCategoriesAction")
+  props: {
+    taskId: {
+      type: Number,
+    },
   },
-  computed:{
-    ...mapState(["categories"])
+  async created() {
+    if (this.taskId > 0) {
+      this.task = this.$store.getters.getTaskById(this.taskId);
+      console.log(this.task);
+    } else {
+      this.title = null;
+      this.isImportant = false;
+      this.enddate = null;
+      this.category = null;
+    }
+    await this.$store.dispatch("getCategoriesAction");
+  },
+  computed: {
+    ...mapState(["categories"]),
   },
   methods: {
     ...mapActions(["addTaskAction"]),
-    cancel(){
-        this.$router.push({name: "tasks"});
+    cancel() {
+      this.$router.push({ name: "tasks" });
     },
     async addTask() {
       if (this.checkForm()) {
         await this.addTaskAction(this.task);
-        this.$router.push({name: "tasks"});
+        this.$router.push({ name: "tasks" });
       }
     },
 

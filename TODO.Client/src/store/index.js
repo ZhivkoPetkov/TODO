@@ -95,8 +95,8 @@ const mutations = {
 };
 
 const getters = {
-  getTaskById(id) { this.state.tasks.find(p => p.Id = id) }
-}
+  getTaskById: state => id => state.tasks.find(p => p.Id = id)
+};
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',

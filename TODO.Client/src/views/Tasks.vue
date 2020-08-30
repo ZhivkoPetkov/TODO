@@ -24,7 +24,7 @@
       </div>
       <footer class="card-footer" style="margin-bottom:10px">
         <a @click="finishTask(task.id)" class="card-footer-item">Finish</a>
-        <a href="#" class="card-footer-item">Edit</a>
+        <a @click="editTask(task.id)" class="card-footer-item">Edit</a>
         <a @click="deleteTask(task.id)" class="card-footer-item">Delete</a>
       </footer>
     </div>
@@ -53,6 +53,9 @@ export default {
     },
     async finishTask(id) {
       await this.$store.dispatch("finishTaskAction", id);
+    },
+    async editTask(id){
+      this.$router.push({name: "addTaskModal", params: { taskId: id}})
     },
     isLateTask(task) {
       return (

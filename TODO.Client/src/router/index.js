@@ -5,7 +5,6 @@ import Tasks from '../views/Tasks.vue'
 import AddTaskModal from '../components/AddTaskModal.vue'
 
 Vue.use(VueRouter)
-const parseProps = r => ({ id: parseInt(r.params.id) });
 
   const routes = [
   {
@@ -16,7 +15,7 @@ const parseProps = r => ({ id: parseInt(r.params.id) });
   {
     path: '/add',
     name: 'addTaskModal',
-    props: parseProps,
+    props: true,
     component: AddTaskModal
   },
   {

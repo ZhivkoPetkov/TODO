@@ -40,7 +40,7 @@ const addTask = async function (task) {
         title: task.title,
         categoryid: task.category,
         enddate: task.enddate,
-        isimportant: task.isimportant,
+        isImportant: task.isImportant,
     });
     return response.data;
 };
