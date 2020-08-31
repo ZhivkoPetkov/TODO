@@ -55,7 +55,7 @@
         <div class="field">
           <div class="control">
             <label>
-              <input type="date" id="enddate" name="enddate" v-model="task.enddate" checked />
+              <datetime format="MM/DD/YYYY" width="300px" v-model="task.endDate">Date</datetime>
             </label>
           </div>
         </div>
@@ -78,9 +78,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import datetime from "vuejs-datetimepicker";
+
 name: "addTaskModal";
 categoryId: "";
+
 export default {
+  components: { datetime },
   data() {
     return {
       task: {},
@@ -98,7 +102,7 @@ export default {
     } else {
       this.title = null;
       this.isImportant = false;
-      this.enddate = null;
+      this.endDate = null;
       this.category = null;
     }
     await this.$store.dispatch("getCategoriesAction");
@@ -119,7 +123,7 @@ export default {
     },
 
     checkForm() {
-      if (this.task.title && this.task.categoryId && this.task.enddate) {
+      if (this.task.title && this.task.categoryId && this.task.endDate) {
         return true;
       }
       this.errors = [];
@@ -129,7 +133,7 @@ export default {
       if (!this.task.categoryId) {
         this.errors.push("- Category required!");
       }
-      if (!this.task.enddate) {
+      if (!this.task.endDate) {
         this.errors.push("- End date required!");
       }
     },

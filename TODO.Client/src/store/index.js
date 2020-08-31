@@ -96,7 +96,10 @@ const mutations = {
 
 const getters = {
   getTaskById: (state) => (id) => {
-    return state.tasks.find(task => task.id === id);
+    let task = state.tasks.find(task => task.id === id);
+    task.endDate  = new Date(task.endDate).toLocaleDateString('en-US');
+    console.log(task.endDate);
+    return task;
   }
 };
 

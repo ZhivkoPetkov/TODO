@@ -18,7 +18,7 @@
           Category: {{task.category.name}}
           <br />
           <time
-            datetime="2016-1-1"
+            datetime="2016/1/1"
           >Finish date: {{new Date(task.endDate).toLocaleDateString("en-US")}}</time>
         </div>
       </div>
