@@ -15,9 +15,6 @@
         <div class="field">
           <p class="control is-expanded has-icons-left">
             <input class="input" v-model="task.title" type="text" placeholder="Title" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
           </p>
         </div>
       </div>
@@ -98,7 +95,6 @@ export default {
   async created() {
     if (this.taskId > 0) {
       this.task = this.$store.getters.getTaskById(this.taskId);
-      console.log(this.task);
     } else {
       this.title = null;
       this.isImportant = false;
