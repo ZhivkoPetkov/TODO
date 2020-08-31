@@ -29,7 +29,7 @@
       </div>
       <div class="field-body">
         <label v-for="cat in categories" :key="cat.id" style="margin-right: 10px">
-          <input type="radio" name="category" :value="cat.id" v-model="task.category" />
+          <input type="radio" name="category" :value="cat.id" v-model="task.categoryId" />
           {{cat.name}}
         </label>
       </div>
@@ -82,7 +82,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 name: "addTaskModal";
-category: "";
+categoryId: "";
 export default {
   data() {
     return {
@@ -123,14 +123,14 @@ export default {
     },
 
     checkForm() {
-      if (this.task.title && this.task.category && this.task.enddate) {
+      if (this.task.title && this.task.categoryId && this.task.enddate) {
         return true;
       }
       this.errors = [];
       if (!this.task.title) {
         this.errors.push("- Title required!");
       }
-      if (!this.task.category) {
+      if (!this.task.categoryId) {
         this.errors.push("- Category required!");
       }
       if (!this.task.enddate) {

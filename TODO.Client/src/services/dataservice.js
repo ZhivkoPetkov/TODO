@@ -38,7 +38,7 @@ const addTask = async function (task) {
 
     const response = await axios.post(`${API}/tasks`, {
         title: task.title,
-        categoryid: task.category,
+        categoryid: task.categoryId,
         enddate: task.enddate,
         isImportant: task.isImportant,
     });
