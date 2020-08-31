@@ -7,16 +7,16 @@
       <div class="is-divider" />
       <ul class="menu-list">
         <li>
-          <a @click="updateFilter('Today')">Today</a>
+          <a :class="checkFilterState('Today')" @click="updateFilter('Today')">Today</a>
         </li>
         <li>
-          <a @click="updateFilter('Important')">Important</a>
+          <a :class="checkFilterState('Important')" @click="updateFilter('Important')">Important</a>
         </li>
       </ul>
       <div class="divider is-danger">----------------</div>
       <ul class="menu-list">
         <li v-for="cat in categories" :key="cat.id">
-          <a a @click="updateFilter(cat.name)">{{ cat.name }}</a>
+          <a :class="checkFilterState(cat.name)" @click="updateFilter(cat.name)">{{ cat.name }}</a>
         </li>
       </ul>
     </aside>
@@ -52,12 +52,15 @@ export default {
       this.$store.dispatch("updateShowFinishedAction");
       this.$store.dispatch("getTasksAction");
     },
+    checkFilterState(filter){
+      return this.taskFilter === filter ? "has-text-weight-bold	" : ''
+    }
   },
   async created() {
     await this.loadCategories();
   },
   computed: {
-    ...mapState(["categories", "showFinished", "tasks"]),
+    ...mapState(["categories", "showFinished", "tasks", "taskFilter"]),
   },
 };
 </script>
