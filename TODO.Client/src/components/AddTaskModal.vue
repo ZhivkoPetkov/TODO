@@ -55,7 +55,7 @@
         <div class="field">
           <div class="control">
             <label>
-              <datetime format="MM/DD/YYYY" width="300px" v-model="task.endDate">Date</datetime>
+              <input type="date" v-model="task.endDate">
             </label>
           </div>
         </div>
@@ -67,7 +67,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <button style="margin-right: 20px" class="button is-success" @click="addTask()">Save</button>
+            <button style="margin-right: 20px" class="button is-success" @click="saveTask()">Save</button>
             <button class="button" @click="cancel()">Cancel</button>
           </div>
         </div>
@@ -78,13 +78,12 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import datetime from "vuejs-datetimepicker";
 
 name: "addTaskModal";
 categoryId: "";
 
 export default {
-  components: { datetime },
+  components: {  },
   data() {
     return {
       task: {},
@@ -102,26 +101,25 @@ export default {
     } else {
       this.title = null;
       this.isImportant = false;
-      this.endDate = null;
+      this.endDate = new Date();
       this.category = null;
     }
     await this.$store.dispatch("getCategoriesAction");
   },
   computed: {
-    ...mapState(["categories"]),
+    ...mapState(["categories"])
   },
   methods: {
-    ...mapActions(["addTaskAction"]),
+    ...mapActions(["addTaskAction", "updateTaskAction"]),
     cancel() {
       this.$router.push({ name: "tasks" });
     },
-    async addTask() {
+    async saveTask() {
       if (this.checkForm()) {
-        await this.addTaskAction(this.task);
+        !this.taskId ? await this.addTaskAction(this.task) : await this.updateTaskAction(this.task) 
         this.$router.push({ name: "tasks" });
       }
     },
-
     checkForm() {
       if (this.task.title && this.task.categoryId && this.task.endDate) {
         return true;
@@ -136,7 +134,7 @@ export default {
       if (!this.task.endDate) {
         this.errors.push("- End date required!");
       }
-    },
+    }
   },
 };
 </script>

@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { dataservice } from '../services/dataservice'
 import {
-  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED
+  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED, UPDATE_TASK
 } from '../store/mutation-types';
 import createPersistedState from "vuex-persistedstate";
+import moment from 'moment';
 
 Vue.use(Vuex)
 
@@ -26,9 +27,6 @@ const actions = {
     if (this.state.showFinished === false) {
       tasks = tasks.filter(p => p.isFinished !== true)
     }
-
-    console.log('finished:' + this.state.showFinished)
-
     commit(GET_TASKS, tasks);
   },
   async addTaskAction({ commit }, task) {
@@ -52,6 +50,10 @@ const actions = {
   async finishTaskAction({ commit }, id) {
     const response = await dataservice.finishTask(id);
     commit(FINISH_TASK, response)
+  },
+  async updateTaskAction({ commit }, task) {
+    const response = await dataservice.updateTask(task);
+    commit(UPDATE_TASK, response);
   },
   async updateShowFinishedAction({ commit }) {
     if (!this.state.showFinished) {
@@ -81,7 +83,6 @@ const mutations = {
     var result = state.tasks;
   },
   [DELETE_TASK](state, id) {
-    const index = state.tasks.findIndex(p => p.id == id);
     state.tasks = [...state.tasks.filter(t => t.id != id)];
   },
   [FINISH_TASK](state, task) {
@@ -91,17 +92,25 @@ const mutations = {
   },
   [SHOW_FINISHED](state, status) {
     state.showFinished = status
+  },
+  [UPDATE_TASK](state, task) {
+    const index = state.tasks.findIndex(p => p.id === task.id);
+    state.tasks.splice(index, 1, task);
+    state.tasks = [...state.tasks];
   }
 };
 
 const getters = {
   getTaskById: (state) => (id) => {
     let task = state.tasks.find(task => task.id === id);
-    task.endDate  = new Date(task.endDate).toLocaleDateString('en-US');
-    console.log(task.endDate);
+    task.endDate = formatDate(task.endDate);
     return task;
   }
 };
+
+function formatDate(date) {
+  return moment(new Date(date)).format("YYYY-MM-DD");
+}
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',

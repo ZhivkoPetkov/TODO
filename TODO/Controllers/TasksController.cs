@@ -31,23 +31,18 @@ namespace TODO.Controllers
             return result.ToList();
         }
 
-        // GET: api/Tasks/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskDto>> GetTask(int id)
         {
             return await this.taskService.GetTaskById(id);
         }
 
-        // POST: api/Tasks/5/true
         [HttpPost("finish/{id}")]
         public async Task<ActionResult<TaskDto>> ChangeStatus(int id)
         {
             return await this.taskService.ChangeStatus(id, true);
         }
 
-        // POST: api/Tasks
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<TaskDto>> AddTask(Domains.Task task)
         {
@@ -57,6 +52,18 @@ namespace TODO.Controllers
             }
             var response = await this.taskService.AddTask(task);
             var model = await this.taskService.GetTaskById(response);
+            return this.mapper.Map<TaskDto>(model);
+        }
+
+        [HttpPatch("update")]
+        public async Task<ActionResult<TaskDto>> UpdateTask(Domains.Task task)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var response = await this.taskService.UpdateTask(task);
+            var model = await this.taskService.GetTaskById(response.Id);
             return this.mapper.Map<TaskDto>(model);
         }
 

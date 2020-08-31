@@ -39,7 +39,18 @@ const addTask = async function (task) {
     const response = await axios.post(`${API}/tasks`, {
         title: task.title,
         categoryid: task.categoryId,
-        endDate: task.enddate,
+        endDate: task.endDate,
+        isImportant: task.isImportant,
+    });
+    return response.data;
+};
+
+const updateTask = async function (task) {
+    const response = await axios.patch(`${API}/tasks/update`, {
+        id: task.id,
+        title: task.title,
+        categoryid: task.categoryId,
+        endDate: task.endDate,
         isImportant: task.isImportant,
     });
     return response.data;
@@ -81,5 +92,6 @@ export const dataservice = {
     getTasks,
     addTask,
     deleteTask,
-    finishTask
+    finishTask,
+    updateTask
 };
