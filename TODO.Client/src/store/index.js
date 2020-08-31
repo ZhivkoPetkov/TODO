@@ -76,11 +76,12 @@ const mutations = {
       state.tasks = []
     }
     state.tasks.push(task);
+    state.taskFilter = task.category.name;
+
   },
   [UPDATE_TASK_FILTER](state, filter) {
     state.taskFilter = filter;
     state.tasks = state.tasks.filter(p => p.category.name === filter);
-    var result = state.tasks;
   },
   [DELETE_TASK](state, id) {
     state.tasks = [...state.tasks.filter(t => t.id != id)];
@@ -97,6 +98,7 @@ const mutations = {
     const index = state.tasks.findIndex(p => p.id === task.id);
     state.tasks.splice(index, 1, task);
     state.tasks = [...state.tasks];
+    state.taskFilter = task.category.name;
   }
 };
 
