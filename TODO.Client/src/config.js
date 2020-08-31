@@ -1,1 +1,1 @@
-export const API = 'https://localhost:44306/api';
+export const API = 'https://zhp-todo.azurewebsites.net/api';

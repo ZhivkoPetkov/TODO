@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h3 class="has-text-danger is-size-6" v-if="errors.length">
       <h3>Please correct the following error(s):</h3>
       <ul>
@@ -13,7 +13,7 @@
       </div>
       <div class="field-body">
         <div class="field">
-          <p class="control is-expanded has-icons-left">
+          <p class="control">
             <input class="input" v-model="task.title" type="text" placeholder="Title" />
           </p>
         </div>
@@ -55,7 +55,7 @@
         <div class="field">
           <div class="control">
             <label>
-              <input type="date" v-model="task.endDate">
+              <input type="date" v-model="task.endDate" />
             </label>
           </div>
         </div>
@@ -83,7 +83,7 @@ name: "addTaskModal";
 categoryId: "";
 
 export default {
-  components: {  },
+  components: {},
   data() {
     return {
       task: {},
@@ -107,7 +107,7 @@ export default {
     await this.$store.dispatch("getCategoriesAction");
   },
   computed: {
-    ...mapState(["categories"])
+    ...mapState(["categories"]),
   },
   methods: {
     ...mapActions(["addTaskAction", "updateTaskAction"]),
@@ -116,7 +116,9 @@ export default {
     },
     async saveTask() {
       if (this.checkForm()) {
-        !this.taskId ? await this.addTaskAction(this.task) : await this.updateTaskAction(this.task) 
+        !this.taskId
+          ? await this.addTaskAction(this.task)
+          : await this.updateTaskAction(this.task);
         this.$router.push({ name: "tasks" });
       }
     },
@@ -134,7 +136,7 @@ export default {
       if (!this.task.endDate) {
         this.errors.push("- End date required!");
       }
-    }
+    },
   },
 };
 </script>

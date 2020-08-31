@@ -4,7 +4,7 @@
       <div class="column is-one-quarter">
         <NavBar />
       </div>
-      <div class="column"  style="margin-top:20px">
+      <div class="column is-half"  style="margin-top:20px">
         <router-view />
       </div>
     </div>
