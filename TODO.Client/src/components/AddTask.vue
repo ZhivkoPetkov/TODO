@@ -78,6 +78,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import {cloneDeep} from 'lodash'
 
 name: "addTask";
 categoryId: "";
@@ -97,7 +98,7 @@ export default {
   },
   async created() {
     if (this.taskId > 0) {
-      this.task = this.$store.getters.getTaskById(this.taskId);
+      this.task = cloneDeep(this.$store.getters.getTaskById(this.taskId));
     } else {
       this.title = null;
       this.isImportant = false;
