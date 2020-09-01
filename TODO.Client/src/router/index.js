@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Tasks from '../views/Tasks.vue'
-import AddTaskModal from '../components/AddTaskModal.vue'
+import AddTask from '../components/AddTask.vue'
 
 Vue.use(VueRouter)
 
@@ -14,9 +14,9 @@ Vue.use(VueRouter)
   },
   {
     path: '/add',
-    name: 'addTaskModal',
+    name: 'addTask',
     props: true,
-    component: AddTaskModal
+    component: AddTask
   },
   {
     path: '/tasks',

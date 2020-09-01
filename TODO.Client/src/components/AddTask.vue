@@ -79,7 +79,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 
-name: "addTaskModal";
+name: "addTask";
 categoryId: "";
 
 export default {

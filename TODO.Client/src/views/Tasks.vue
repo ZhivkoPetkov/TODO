@@ -55,7 +55,7 @@ export default {
       await this.$store.dispatch("finishTaskAction", id);
     },
     async editTask(id) {
-      this.$router.push({ name: "addTaskModal", params: { taskId: id } });
+      this.$router.push({ name: "addTask", params: { taskId: id } });
     },
     isLateTask(task) {
       var currentDate = new Date();

@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="margin-top:25px">
     <router-link tag="button"
-            class="button add-button is-success" :to="{ name: 'addTaskModal' }">Add Task</router-link>
+            class="button add-button is-success" :to="{ name: 'addTask' }">Add Task</router-link>
 
     <aside class="menu">
       <div class="is-divider" />
@@ -30,12 +30,12 @@
 
 <script>
 name: "NavBar";
-import AddTaskModal from "../components/AddTaskModal.vue";
+import AddTask from "../components/AddTask.vue";
 import dataservice from "../services/dataservice";
 import { MapState, mapState } from "vuex";
 
 export default {
-  components: { AddTaskModal },
+  components: { AddTask },
   data() {
     return {
       showModal: false,
