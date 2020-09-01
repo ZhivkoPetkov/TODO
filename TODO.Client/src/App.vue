@@ -18,22 +18,6 @@ import NavBar from "./components/NavBar.vue";
 import Tasks from "./views/Tasks.vue";
 export default {
   components: { NavBar, Tasks },
-  async created() {
-    await this.loadCats();
-    await this.loadTasks();
-  },
-
-  methods: {
-    async loadCats() {
-      await this.$store.dispatch("getCategoriesAction");
-    },
-    async loadTasks() {
-      await this.$store.dispatch("getTasksAction");
-    },
-  },
-  computed: {
-    ...mapState(["categories", "tasks", "taskFilter", "showFinished"]),
-  },
 };
 </script>
 

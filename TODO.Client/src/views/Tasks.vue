@@ -1,6 +1,6 @@
 <template>
-  <div  stlye="margin-top:40px">
-    <h1 v-if="tasks.length === 0">You dont have any tasks now. Enjoy your beer :-) </h1>
+  <div stlye="margin-top:40px">
+    <h1 v-if="tasks.length === 0">You dont have any tasks now. Enjoy your beer :-)</h1>
     <div class="card" v-for="task in tasks" :key="task.id">
       <header class="card-header">
         <div class="row justify-content-center card-header-title">
@@ -54,14 +54,13 @@ export default {
     async finishTask(id) {
       await this.$store.dispatch("finishTaskAction", id);
     },
-    async editTask(id){
-      this.$router.push({name: "addTaskModal", params: { taskId: id}})
+    async editTask(id) {
+      this.$router.push({ name: "addTaskModal", params: { taskId: id } });
     },
     isLateTask(task) {
-      return (
-        new Date(task.endDate).toLocaleDateString("en-US") <
-        new Date().toLocaleDateString("en-US")
-      );
+      var currentDate = new Date();
+      var taskDate = new Date(task.endDate);
+      return currentDate.getTime() > taskDate.getTime();
     },
   },
   computed: {
