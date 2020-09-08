@@ -1,10 +1,15 @@
 <template>
   <div class="container">
+    <div v-if="categories.length === 0">
+      <center>
+        <img src="./assets/loading.gif" />
+      </center>
+    </div>
     <div class="columns">
       <div class="column is-one-quarter">
         <NavBar />
       </div>
-      <div class="column is-half"  style="margin-top:20px">
+      <div class="column is-half" style="margin-top:20px">
         <router-view />
       </div>
     </div>
@@ -13,11 +18,14 @@
 
 <script>
 import { dataservice } from "../src/services/dataservice";
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 import NavBar from "./components/NavBar.vue";
 import Tasks from "./views/Tasks.vue";
 export default {
   components: { NavBar, Tasks },
+  computed: {
+    ...mapState(["categories", "tasks"]),
+  },
 };
 </script>
 
