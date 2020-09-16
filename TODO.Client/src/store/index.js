@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { dataservice } from '../services/dataservice'
 import {
-  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED, UPDATE_TASK
+  GET_CATEGORIES, ADD_TASK, GET_TASKS, UPDATE_TASK_FILTER, DELETE_TASK, FINISH_TASK, SHOW_FINISHED,
+  UPDATE_TASK
 } from '../store/mutation-types';
 import createPersistedState from "vuex-persistedstate";
 import moment from 'moment';
@@ -77,7 +78,6 @@ const mutations = {
     }
     state.tasks.push(task);
     state.taskFilter = task.category.name;
-
   },
   [UPDATE_TASK_FILTER](state, filter) {
     state.taskFilter = filter;

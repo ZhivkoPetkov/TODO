@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div v-if="categories.length === 0">
+    <div v-if="!this.loaded">
       <center>
         <img src="./assets/loading.gif" />
       </center>
     </div>
-    <div class="columns">
+    <div v-else class="columns">
       <div class="column is-one-quarter">
         <NavBar />
       </div>
@@ -18,13 +18,33 @@
 
 <script>
 import { dataservice } from "../src/services/dataservice";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import NavBar from "./components/NavBar.vue";
 import Tasks from "./views/Tasks.vue";
+
 export default {
   components: { NavBar, Tasks },
+  async created() {
+    await this.loadTasks();
+    await this.loadCategories();
+    this.loaded = true;
+  },
+  data() {
+    return {
+      loaded : false
+    }
+  },
   computed: {
-    ...mapState(["categories", "tasks"]),
+    ...mapState(["categories", "tasks","showFinished"])
+  },
+
+  methods: {
+    async loadTasks() {
+      await this.$store.dispatch("getTasksAction");
+    },
+    async loadCategories() {
+      await this.$store.dispatch("getCategoriesAction");
+    },
   },
 };
 </script>

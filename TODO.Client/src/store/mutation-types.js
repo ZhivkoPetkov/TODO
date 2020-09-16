@@ -6,3 +6,4 @@ export const UPDATE_TASK = "updateTask";
 export const FINISH_TASK = "finishTask";
 export const UPDATE_TASK_FILTER = "updateTaskFilter";
 export const SHOW_FINISHED = "showFinished";
+export const UPDATE_FETCH = "updateFetch";
